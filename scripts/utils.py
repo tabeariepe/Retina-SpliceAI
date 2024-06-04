@@ -145,7 +145,7 @@ def one_hot_encode(Xd, Yd):
            [OUT_MAP[Yd[t].astype('int8')] for t in range(1)]
 
 
-def print_topl_statistics(ytrue, y_pred):
+def print_topl_statistics(y_true, y_pred):
     # Prints the following information: top-kL statistics for k=0.5,1,2,4,
     # auprc, thresholds for k=0.5,1,2,4, number of true splice sites.
 

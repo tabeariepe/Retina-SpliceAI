@@ -32,6 +32,7 @@ parser.add_argument('model_number', type=int, help='Model number')
 parser.add_argument('dataset', type=str, help='Dataset used for the training')
 parser.add_argument('model_architecture', type=str, choices=['standard', 'dropout', 'optimized', 'freeze'], help='Model that is trained')
 parser.add_argument('mode', type=str, choices=['initialize', 'train'], help='Training mode')
+parser.add_argument('--dropoutrate', type=float, help='Dropout rate used during training')
 parser.add_argument('--freezeoption', type=str, default='A', choices=['A', 'B', 'C','D','E','F'],
                     help='Determines how many layers are frozen when retraining the GTEx model.')
 
@@ -103,7 +104,10 @@ CL = 2 * np.sum(AR*(W-1))
 print("Context nucleotides: %d" % (CL))
 print("Sequence length (output): %d" % (SL))
 
-model = SpliceAI(L, W, AR)
+if model_architecture == 'dropout':
+    model = SpliceAI(L, W, AR, args.dropoutrate)
+else:
+    model = SpliceAI(L, W, AR)
 
 # Decie if the model should be initialised or a existing initialization should be used
 if mode == 'initialize':
