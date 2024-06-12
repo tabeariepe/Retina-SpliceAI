@@ -10,7 +10,7 @@
 #SBATCH --job-name=standard
 #SBATCH --output=/home/tabeariepe/Retina-SpliceAI/slurm/standard.out
 
-cd /home/scripts/
+#cd /home/scripts/
 
 for i in {1..5}; 
     do python3 train_model.py $i retina standard train > ../output_train/SpliceAI_standard_retina${i}.txt;
