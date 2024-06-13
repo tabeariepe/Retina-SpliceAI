@@ -10,7 +10,7 @@
 #SBATCH --job-name=drop0.2
 #SBATCH --output=/home/tabeariepe/Retina-SpliceAI/slurm/dropout0.2.out
 
-cd /home/scripts/
+#cd /home/scripts/
 
 for i in {1..5}; 
     do python3 train_model.py $i retina dropout train --dropoutrate 0.2 > ../output_train/SpliceAI_dropout0.2_retina${i}.txt;
