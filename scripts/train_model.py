@@ -13,6 +13,8 @@ import argparse
 from tensorflow.keras.models import load_model
 import gc
 from tensorflow.keras.callbacks import Callback
+from tensorflow.keras.optimizers import Adam
+
 
 class ClearMemory(Callback):
     def on_epoch_end(self, epoch, logs=None):
@@ -117,6 +119,7 @@ elif mode == 'train':
     print('Loading existing model')
 
     if model_architecture == 'freeze':
+        num_epochs = 4
         init_model = load_model('../models/SpliceAI_standard_gtex_' + str(model_number) + '.h5', compile=False)
         print('Freezing layers')
         
@@ -166,20 +169,17 @@ elif mode == 'train':
     idx_train = idx_all[:int(0.9*num_idx)]
     idx_valid = idx_all[int(0.9*num_idx):]
 
-    if model_architecture in ['standard', 'dropout', 'freeze']:
+    if model_architecture in ['standard', 'dropout']:
         print('standard training and loss')
         model.compile(loss=categorical_crossentropy_2d, optimizer='adam', run_eagerly=True)
     elif model_architecture == 'optimized':
         print('optimized training and loss')
-        initial_learning_rate = 0.0005
-        lr_schedule = CosineDecayRestarts(
-            initial_learning_rate,
-            first_decay_steps=2 * len(idx_train),
-            t_mul=2.0,
-            m_mul=1.0,
-            alpha=0.0
-        )
-        optimizer = tfa.optimizers.AdamW(learning_rate=lr_schedule, weight_decay=0.0001)
+        optimizer = tfa.optimizers.AdamW(learning_rate=0.001, weight_decay=0.0001)
+        model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
+    if model_architecture ==  'freeze':
+        print('standard training and loss')
+        learning_rate = 0.0005  
+        optimizer = Adam(learning_rate=learning_rate)
         model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
     else: 
         print('Model architecture not known')
@@ -296,14 +296,14 @@ elif mode == 'train':
                 print_topl_statistics(np.asarray(Y_true_2[t]),np.asarray(Y_pred_2[t]))
 
             # Learning rate decay
-            if model_architecture in ['standard', 'dropout', 'freeze']:
+            if model_architecture in ['standard', 'dropout', 'optimized']:
                 print("Learning rate: %.5f" % (model.optimizer.lr.numpy()))
                 if (epoch_num + 1) >= 6 * len(idx_train):
                     model.optimizer.lr.assign(0.5 * model.optimizer.lr)
 
-            elif model_architecture == 'optimized':
-                current_learning_rate = lr_schedule(optimizer.iterations)
-                print("Learning rate: %.5f" % (current_learning_rate.numpy()))
+            elif model_architecture == 'freeze':
+                print("Learning rate: %.5f" % (model.optimizer.lr.numpy()))
+                model.optimizer.lr.assign(0.5 * model.optimizer.lr)
 
             print("--- %s seconds ---" % (time.time() - start_time))
             start_time = time.time()

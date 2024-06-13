@@ -10,9 +10,9 @@ from keras.models import load_model
 from utils import *
 import argparse 
 from spliceai import categorical_crossentropy_2d
+import tensorflow_addons as tfa
 
 # Read command line parameters 
-
 parser = argparse.ArgumentParser()
 parser.add_argument('model_name')
 parser.add_argument('test_dataset')
@@ -37,12 +37,18 @@ model = [[] for v in range(len(version))]
 for v in range(len(version)):
 
     model[v] = load_model('../models/' + model + str(version[v]) + '.h5', compile = False)
-                          
-    model[v].compile(loss=categorical_crossentropy_2d, optimizer='adam')
+
+    model_architecture = model.split('_')[1]
+
+    if model_architecture == 'optimized':
+         optimizer = tfa.optimizers.AdamW()
+         model[v].compile(loss=categorical_crossentropy_2d, optimizer=optimizer)
+    else:
+        model[v].compile(loss=categorical_crossentropy_2d, optimizer='adam')
     
     print(model)
       
-# Test on the retina data
+# Load the testdata
 h5f = h5py.File('../data/' + dataset + '.h5', 'r')
 
 num_idx = len(list(h5f.keys()))//2
