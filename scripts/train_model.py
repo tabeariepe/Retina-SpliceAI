@@ -7,7 +7,6 @@ import sys
 import time
 import h5py
 import tensorflow as tf
-from tensorflow.keras.optimizers.schedules import CosineDecayRestarts
 import tensorflow_addons as tfa
 import argparse 
 from tensorflow.keras.models import load_model
@@ -33,9 +32,9 @@ parser = argparse.ArgumentParser(description='Description of your script.')
 parser.add_argument('model_number', type=int, help='Model number')
 parser.add_argument('dataset', type=str, help='Dataset used for the training')
 parser.add_argument('model_architecture', type=str, choices=['standard', 'dropout', 'optimized', 'freeze'], help='Model that is trained')
-parser.add_argument('mode', type=str, choices=['initialize', 'train'], help='Training mode')
+parser.add_argument('mode', type=str, choices=['initialize', 'train'], help='Training or initialization mode')
 parser.add_argument('--dropoutrate', type=float, help='Dropout rate used during training')
-parser.add_argument('--freezeoption', type=str, default='A', choices=['A', 'B', 'C','D','E','F'],
+parser.add_argument('--freezeoption', type=str, default='A', choices=['A', 'B', 'C','D','E','F', 'none'],
                     help='Determines how many layers are frozen when retraining the GTEx model.')
 
 # Parse the arguments
@@ -125,6 +124,7 @@ elif mode == 'train':
         
         # Define the options for freezing layers
         options = {
+            'none': set(),
             'A': set(['conv1d_38', 'batch_normalization_32']),
             'B': set(['conv1d_38', 'batch_normalization_32', 'conv1d_37']),
             'C': set(['conv1d_38', 'batch_normalization_32', 'conv1d_37', 'batch_normalization_30', 'conv1d_35', 'batch_normalization_31', 'conv1d_36']),
@@ -134,7 +134,7 @@ elif mode == 'train':
         }
 
         # Determine which option should be used
-        chosen_option = options.get(args.freezeoption, options['F'])
+        chosen_option = options.get(args.freezeoption, options['A'])
 
         for layer in model.layers:
             if layer.name not in chosen_option:
@@ -174,12 +174,11 @@ elif mode == 'train':
         model.compile(loss=categorical_crossentropy_2d, optimizer='adam', run_eagerly=True)
     elif model_architecture == 'optimized':
         print('optimized training and loss')
-        optimizer = tfa.optimizers.AdamW(learning_rate=0.001, weight_decay=0.0001)
+        optimizer = tfa.optimizers.AdamW(learning_rate=0.001, weight_decay=0.00001)
         model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
     if model_architecture ==  'freeze':
         print('standard training and loss')
-        learning_rate = 0.0005  
-        optimizer = Adam(learning_rate=learning_rate)
+        optimizer = Adam(learning_rate=0.0005)
         model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
     else: 
         print('Model architecture not known')
@@ -312,6 +311,8 @@ elif mode == 'train':
             sys.stdout.flush()
             if model_architecture == 'dropout':
                 model.save('../models/SpliceAI_' + model_architecture + args.dropoutrate + '_' + dataset + '_' + str(model_number) + '.h5')
+            elif model_architecture == 'freeze':
+                model.save('../models/SpliceAI_' + model_architecture + args.freezeoption + '_' + dataset + '_' + str(model_number) + '.h5')
             else:
                 model.save('../models/SpliceAI_' + model_architecture + '_' + dataset + '_' + str(model_number) + '.h5')
         
