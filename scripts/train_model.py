@@ -26,7 +26,7 @@ print(tf.__version__)
 # Command line input
 ##############################################################################
 
-parser = argparse.ArgumentParser(description='Description of your script.')
+parser = argparse.ArgumentParser()
 
 # Add arguments
 parser.add_argument('model_number', type=int, help='Model number')

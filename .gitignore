@@ -1,6 +1,3 @@
 data/
 *.svg
-models/
 output_train/
-output_test/
->>>>>>> 53da931 (updated ignored files)

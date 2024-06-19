@@ -25,13 +25,13 @@ if gpus:
 
 # Read command line parameters 
 parser = argparse.ArgumentParser()
-parser.add_argument('model_name')
-parser.add_argument('test_dataset')
+parser.add_argument('model_name', type=str)
+parser.add_argument('test_dataset', type=str)
 
 # Parse the arguments
 args = parser.parse_args()
 
-model = args.model_name
+name = args.model_name
 dataset = args.test_dataset
 
 ###############################################################################
@@ -47,9 +47,9 @@ model = [[] for v in range(len(version))]
 
 for v in range(len(version)):
 
-    model[v] = load_model('../models/' + model + str(version[v]) + '.h5', compile = False)
+    model[v] = load_model('../models/' + name + '_' + str(version[v]) + '.h5', compile = False)
 
-    model_architecture = model.split('_')[1]
+    model_architecture = name.split('_')[1]
 
     if model_architecture == 'optimized':
          optimizer = tfa.optimizers.AdamW()
@@ -60,7 +60,7 @@ for v in range(len(version)):
     print(model)
       
 # Load the testdata
-h5f = h5py.File('../data/' + dataset + '.h5', 'r')
+h5f = h5py.File('../data/' + dataset + '_test_0.h5', 'r')
 
 num_idx = len(list(h5f.keys()))//2
 
