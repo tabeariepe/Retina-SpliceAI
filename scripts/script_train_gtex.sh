@@ -11,7 +11,6 @@
 #SBATCH --output=/home/tabeariepe/Retina-SpliceAI/slurm/gtex.out
 
 #cd /home/scripts/
+i=5
+python3 train_model.py $i gtex standard train > ../output_train_new/SpliceAI_standard_gtex${i}.txt;
 
-for i in {1..5}; 
-    do python3 train_model.py $i gtex standard train > ../output_train/SpliceAI_standard_gtex${i}.txt;
-done

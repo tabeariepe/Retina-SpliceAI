@@ -12,6 +12,6 @@
 
 #cd /home/scripts/
 
-for i in {4..5}; 
-    do python3 train_model.py $i retina standard train > ../output_train/SpliceAI_standard_retina${i}.txt;
+for i in 1 4 5;
+    do python3 train_model.py $i retina standard train > ../output_train_new/SpliceAI_standard_retina${i}.txt;
 done
