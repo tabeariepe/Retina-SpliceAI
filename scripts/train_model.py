@@ -310,7 +310,10 @@ elif mode == 'train':
 
             print("--------------------------------------------------------------")
             sys.stdout.flush()
-            model.save('../models/SpliceAI_' + model_architecture + '_' + dataset + '_' + str(model_number) + '.h5')
+            if model_architecture == 'dropout':
+                model.save('../models/SpliceAI_' + model_architecture + args.dropoutrate + '_' + dataset + '_' + str(model_number) + '.h5')
+            else:
+                model.save('../models/SpliceAI_' + model_architecture + '_' + dataset + '_' + str(model_number) + '.h5')
         
     h5f.close()
         
