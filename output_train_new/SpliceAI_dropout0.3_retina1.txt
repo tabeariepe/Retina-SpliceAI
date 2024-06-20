@@ -355,4 +355,4 @@ ________________________________________________________________________________
 Loading training data
 standard training and loss
 Model architecture not known
-('start time: ', 1718802688.9372146)
+('start time: ', 1718869382.284057)

@@ -310,7 +310,7 @@ elif mode == 'train':
             print("--------------------------------------------------------------")
             sys.stdout.flush()
             if model_architecture == 'dropout':
-                model.save('../models/SpliceAI_' + model_architecture + args.dropoutrate + '_' + dataset + '_' + str(model_number) + '.h5')
+                model.save('../models/SpliceAI_' + model_architecture + str(args.dropoutrate) + '_' + dataset + '_' + str(model_number) + '.h5')
             elif model_architecture == 'freeze':
                 model.save('../models/SpliceAI_' + model_architecture + args.freezeoption + '_' + dataset + '_' + str(model_number) + '.h5')
             else:
