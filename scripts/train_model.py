@@ -34,7 +34,7 @@ parser.add_argument('dataset', type=str, help='Dataset used for the training')
 parser.add_argument('model_architecture', type=str, choices=['standard', 'dropout', 'optimized', 'freeze'], help='Model that is trained')
 parser.add_argument('mode', type=str, choices=['initialize', 'train'], help='Training or initialization mode')
 parser.add_argument('--dropoutrate', type=float, help='Dropout rate used during training')
-parser.add_argument('--freezeoption', type=str, default='A', choices=['A', 'B', 'C','D','E','F', 'none'],
+parser.add_argument('--freezeoption', type=str, choices=['A', 'B', 'C','D','E','F', 'none'],
                     help='Determines how many layers are frozen when retraining the GTEx model.')
 
 # Parse the arguments
@@ -124,7 +124,6 @@ elif mode == 'train':
         
         # Define the options for freezing layers
         options = {
-            'none': set(),
             'A': set(['conv1d_38', 'batch_normalization_32']),
             'B': set(['conv1d_38', 'batch_normalization_32', 'conv1d_37']),
             'C': set(['conv1d_38', 'batch_normalization_32', 'conv1d_37', 'batch_normalization_30', 'conv1d_35', 'batch_normalization_31', 'conv1d_36']),
@@ -133,12 +132,19 @@ elif mode == 'train':
             'F': set(['conv1d_38', 'batch_normalization_32', 'conv1d_37', 'batch_normalization_30', 'conv1d_35', 'batch_normalization_31', 'conv1d_36', 'batch_normalization_28', 'conv1d_33', 'batch_normalization_29', 'conv1d_34', 'batch_normalization_26', 'conv1d_31', 'batch_normalization_27', 'conv1d_32', 'batch_normalization_24', 'conv1d_29', 'batch_normalization_25', 'conv1d_30'])
         }
 
-        # Determine which option should be used
-        chosen_option = options.get(args.freezeoption, options['A'])
+        # Add 'none' option 
+        all_layer_names = {layer.name for layer in init_model.layers}
+        options['none'] = all_layer_names
 
-        for layer in model.layers:
+        # Determine which option should be used
+        chosen_option = options.get(args.freezeoption)
+
+        for layer in init_model.layers:
             if layer.name not in chosen_option:
                 layer.trainable = False
+            else:
+                layer.trainable = True
+            
                 
         total_trainable_params = sum(tf.keras.backend.count_params(p) for p in model.trainable_weights)
         total_non_trainable_params = sum(tf.keras.backend.count_params(p) for p in model.non_trainable_weights)

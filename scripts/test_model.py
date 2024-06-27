@@ -11,6 +11,7 @@ from utils import *
 import argparse 
 from spliceai import categorical_crossentropy_2d
 import tensorflow_addons as tfa
+import tensorflow as tf
 
 # Ensure TensorFlow uses GPU
 gpus = tf.config.experimental.list_physical_devices('GPU')
