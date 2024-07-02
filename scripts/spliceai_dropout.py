@@ -16,9 +16,9 @@ def ResidualUnit(l, w, ar, dropout_rate):
         act1 = Activation('relu')(bn1)
         conv1 = Conv1D(l, w, dilation_rate=ar, padding='same')(act1)
         bn2 = BatchNormalization()(conv1)
-        drop = Dropout(dropout_rate)(bn2)
-        act2 = Activation('relu')(drop)
-        conv2 = Conv1D(l, w, dilation_rate=ar, padding='same')(act2)
+        act2 = Activation('relu')(bn2)
+        drop1= Dropout(dropout_rate)(act2)
+        conv2 = Conv1D(l, w, dilation_rate=ar, padding='same')(drop1)
         output_node = Add()([conv2, input_node])
 
         return output_node
@@ -47,7 +47,8 @@ def SpliceAI(L, W, AR, dropout_rate):
 
     for t in range(1):
         bn3 = BatchNormalization()(skip)
-        output0[t] = Conv1D(3, 1, activation='softmax')(bn3)
+        drop2 =  Dropout(dropout_rate)(bn3)
+        output0[t] = Conv1D(3, 1, activation='softmax')(drop2)
 
     model = Model(inputs=input0, outputs=output0)
 

@@ -5,10 +5,10 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=50G
 #SBATCH --time=1-00:00:00
-#SBATCH --container-mounts=/data/temporary/tabea/Retina-SpliceAI-2-paper/:/home
+#SBATCH --container-mounts=/home/tabeariepe/Retina-SpliceAI-2/:/home,/data/temporary/tabea/Retina-SpliceAI-2-paper/data/:/data
 #SBATCH --container-image="doduo1.umcn.nl#tabea/spliceai:2.3"
 #SBATCH --job-name=test
-#SBATCH --output=/data/temporary/tabea/Retina-SpliceAI-2-paper/slurm/test.out
+#SBATCH --output=/home/tabeariepe/Retina-SpliceAI-2/slurm/test.out
 
 cd /home/scripts/
 
@@ -56,3 +56,8 @@ cd /home/scripts/
 python3 test_model.py SpliceAI_freezenone_retina retina > ../output_test/SpliceAI_freezenone_retina.txt
 python3 test_model.py SpliceAI_freezenone_retina gtex >> ../output_test/SpliceAI_freezenone_retina.txt
 python3 test_model.py SpliceAI_freezenone_retina canonical >> ../output_test/SpliceAI_freezenone_retina.txt
+
+# #Optimized
+# python3 test_model.py SpliceAI_optimized_retina retina > ../output_test/SpliceAI_optimized_retina.txt
+# python3 test_model.py SpliceAI_optimized_retina gtex >> ../output_test/SpliceAI_optimized_retina.txt
+# python3 test_model.py SpliceAI_optimized_retina canonical >> ../output_test/SpliceAI_optimized_retina.txt

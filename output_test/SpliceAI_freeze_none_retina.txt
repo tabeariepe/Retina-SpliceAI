@@ -1,3 +1,0 @@
-1 Physical GPUs, 1 Logical GPUs
-1 Physical GPUs, 1 Logical GPUs
-1 Physical GPUs, 1 Logical GPUs

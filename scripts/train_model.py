@@ -166,7 +166,7 @@ elif mode == 'train':
     print('Loading training data')
     sys.stdout.flush()
 
-    h5f = h5py.File('../data/' + dataset + '_train_all.h5')
+    h5f = h5py.File('/data/' + dataset + '_train_all.h5')
 
     num_idx = len(list(h5f.keys()))//2
     # Add a seed to always initialyze the model the same 

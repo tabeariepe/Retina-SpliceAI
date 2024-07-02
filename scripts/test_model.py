@@ -53,7 +53,7 @@ for v in range(len(version)):
     model_architecture = name.split('_')[1]
 
     if model_architecture == 'optimized':
-         optimizer = tfa.optimizers.AdamW()
+         optimizer = tfa.optimizers.AdamW(weight_decay=0.00001)
          model[v].compile(loss=categorical_crossentropy_2d, optimizer=optimizer)
     else:
         model[v].compile(loss=categorical_crossentropy_2d, optimizer='adam')
@@ -61,7 +61,7 @@ for v in range(len(version)):
     print(model)
       
 # Load the testdata
-h5f = h5py.File('../data/' + dataset + '_test_0.h5', 'r')
+h5f = h5py.File('/data/' + dataset + '_test_0.h5', 'r')
 
 num_idx = len(list(h5f.keys()))//2
 
