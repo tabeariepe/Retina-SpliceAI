@@ -61,7 +61,7 @@ for v in range(len(version)):
     print(model)
       
 # Load the testdata
-h5f = h5py.File('/data/' + dataset + '_test_0.h5', 'r')
+h5f = h5py.File('../data/' + dataset + '_test_0.h5', 'r')
 
 num_idx = len(list(h5f.keys()))//2
 

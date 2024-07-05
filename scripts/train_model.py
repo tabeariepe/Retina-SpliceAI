@@ -118,7 +118,7 @@ elif mode == 'train':
     print('Loading existing model')
 
     if model_architecture == 'freeze':
-        num_epochs = 4
+        num_epochs = 5
         init_model = load_model('../models/SpliceAI_standard_gtex_' + str(model_number) + '.h5', compile=False)
         print('Freezing layers')
         
@@ -175,17 +175,17 @@ elif mode == 'train':
     idx_train = idx_all[:int(0.9*num_idx)]
     idx_valid = idx_all[int(0.9*num_idx):]
 
-    if model_architecture in ['standard', 'dropout']:
+    if model_architecture in ['standard', 'dropout', 'freeze']:
         print('standard training and loss')
         model.compile(loss=categorical_crossentropy_2d, optimizer='adam', run_eagerly=True)
     elif model_architecture == 'optimized':
         print('optimized training and loss')
         optimizer = tfa.optimizers.AdamW(learning_rate=0.001, weight_decay=0.00001)
         model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
-    if model_architecture ==  'freeze':
-        print('standard training and loss')
-        optimizer = Adam(learning_rate=0.0005)
-        model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
+    #elif model_architecture ==  'freeze':
+    #     print('standard training and loss')
+    #     optimizer = Adam(learning_rate=0.0005)
+    #     model.compile(loss=categorical_crossentropy_2d, optimizer=optimizer, run_eagerly=True)
     else: 
         print('Model architecture not known')
 

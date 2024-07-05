@@ -10,6 +10,7 @@
 #SBATCH --job-name=drop0.2_1
 #SBATCH --exclude=dlc-electabuzz,dlc-groudon,dlc-lugia
 #SBATCH --output=/home/tabeariepe/Retina-SpliceAI-2/slurm/dropout0.2_1.out
+
 cd /home/scripts/
 
 i=1
