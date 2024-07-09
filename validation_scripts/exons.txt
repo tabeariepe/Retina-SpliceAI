@@ -1,0 +1,2 @@
+Import succesful
+Number of retina-specific exons:  201
