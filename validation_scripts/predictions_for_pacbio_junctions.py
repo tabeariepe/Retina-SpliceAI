@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 from functions import *
 
-print('Import succesful')
-
 def get_score_position(chrom, pos, ann, dist_var):
 
     cov = 2*dist_var+1
@@ -45,11 +43,8 @@ def get_score_position(chrom, pos, ann, dist_var):
 
     return y_ref[0,y_ref.shape[1]//2]
 
-
-print('Import succesful')
-
 # Define the models that the script should run on
-models = ['gtex', 'pinelli']
+models = ['SpliceAI_dropout_freeze_retina_all', 'SpliceAI_dropout0.3_gtex_all']
 
 # Load the novel acceptor and donor sites
 acceptors = pd.read_csv('../ref_data/pacbio_novel_acceptors.tsv', sep = '\t', header = None)
@@ -59,13 +54,9 @@ donors = donors.values.tolist()
 print('Number of novel acceptors: ', len(acceptors))
 print('Number of novel donors: ', len(donors))
 
-# Test the script:
-acceptors = acceptors[:2]
-donors = donors[:2]
-
 # Define the reference genome and retina (ENSEMBL + PacBio) combined annotation
 reference = '../annotations/hg38.fa'
-annotation = '../annotations/combined.gtf.txt'
+annotation = '../annotations/combined.txt'
 
 annotators = []
 for m in models:
@@ -80,8 +71,10 @@ result_acceptors = []
 for i in acceptors:
     chr,position = i
 
+    scores = []
+
     for a in annotators:
-        scores = []
+        
         scores.append(get_score_position(chr, position, a, 10000))
 
     result_acceptors.append([chr, position] + [np.around(scores[i], decimals=2) for i in range(len(scores))])
@@ -96,8 +89,9 @@ result_donors = []
 for i in donors:
     chr,position = i
 
+    scores = []
+
     for a in annotators:
-        scores = []
         scores.append(get_score_position(chr, position, a, 10000))
 
     result_donors.append([chr, position] + [np.around(scores[i], decimals=2) for i in range(len(scores))])

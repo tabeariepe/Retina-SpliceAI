@@ -1,45 +1,45 @@
 1 Physical GPUs, 1 Logical GPUs
-[<keras.engine.functional.Functional object at 0x7f0e0fd4c550>, [], [], [], []]
-[<keras.engine.functional.Functional object at 0x7f0e0fd4c550>, <keras.engine.functional.Functional object at 0x7f0e0c1a4580>, [], [], []]
-[<keras.engine.functional.Functional object at 0x7f0e0fd4c550>, <keras.engine.functional.Functional object at 0x7f0e0c1a4580>, <keras.engine.functional.Functional object at 0x7f0e007609a0>, [], []]
-[<keras.engine.functional.Functional object at 0x7f0e0fd4c550>, <keras.engine.functional.Functional object at 0x7f0e0c1a4580>, <keras.engine.functional.Functional object at 0x7f0e007609a0>, <keras.engine.functional.Functional object at 0x7f0e005c6a60>, []]
-[<keras.engine.functional.Functional object at 0x7f0e0fd4c550>, <keras.engine.functional.Functional object at 0x7f0e0c1a4580>, <keras.engine.functional.Functional object at 0x7f0e007609a0>, <keras.engine.functional.Functional object at 0x7f0e005c6a60>, <keras.engine.functional.Functional object at 0x7f0e00436490>]
+[<keras.engine.functional.Functional object at 0x7f6d510fb130>, [], [], [], []]
+[<keras.engine.functional.Functional object at 0x7f6d510fb130>, <keras.engine.functional.Functional object at 0x7f6d405bd3a0>, [], [], []]
+[<keras.engine.functional.Functional object at 0x7f6d510fb130>, <keras.engine.functional.Functional object at 0x7f6d405bd3a0>, <keras.engine.functional.Functional object at 0x7f6ce85a3070>, [], []]
+[<keras.engine.functional.Functional object at 0x7f6d510fb130>, <keras.engine.functional.Functional object at 0x7f6d405bd3a0>, <keras.engine.functional.Functional object at 0x7f6ce85a3070>, <keras.engine.functional.Functional object at 0x7f6ce83da460>, []]
+[<keras.engine.functional.Functional object at 0x7f6d510fb130>, <keras.engine.functional.Functional object at 0x7f6d405bd3a0>, <keras.engine.functional.Functional object at 0x7f6ce85a3070>, <keras.engine.functional.Functional object at 0x7f6ce83da460>, <keras.engine.functional.Functional object at 0x7f6ce833ec10>]
 retina
 
 Acceptor:
-0.5:0.9350	1:0.7327	:0.8174	4:0.8543	PR-AUC:0.7492	0.5:0.8176	1:0.1605	2:0.0293	4:0.0083	SS:15292
+0.5:0.9359	1:0.7340	:0.8187	4:0.8545	PR-AUC:0.7519	0.5:0.8279	1:0.1649	2:0.0292	4:0.0079	SS:15292
 
 Donor:
-0.5:0.9413	1:0.7343	:0.8187	4:0.8529	PR-AUC:0.7520	0.5:0.7973	1:0.1529	2:0.0271	4:0.0073	SS:15323
---- 1334.1086254119873 seconds ---
+0.5:0.9424	1:0.7354	:0.8209	4:0.8535	PR-AUC:0.7539	0.5:0.8193	1:0.1729	2:0.0293	4:0.0074	SS:15323
+--- 1312.6769816875458 seconds ---
 --------------------------------------------------------------
 1 Physical GPUs, 1 Logical GPUs
-[<keras.engine.functional.Functional object at 0x7f5fe6db63d0>, [], [], [], []]
-[<keras.engine.functional.Functional object at 0x7f5fe6db63d0>, <keras.engine.functional.Functional object at 0x7f5edc2b19a0>, [], [], []]
-[<keras.engine.functional.Functional object at 0x7f5fe6db63d0>, <keras.engine.functional.Functional object at 0x7f5edc2b19a0>, <keras.engine.functional.Functional object at 0x7f5ed47902e0>, [], []]
-[<keras.engine.functional.Functional object at 0x7f5fe6db63d0>, <keras.engine.functional.Functional object at 0x7f5edc2b19a0>, <keras.engine.functional.Functional object at 0x7f5ed47902e0>, <keras.engine.functional.Functional object at 0x7f5ed45cf2b0>, []]
-[<keras.engine.functional.Functional object at 0x7f5fe6db63d0>, <keras.engine.functional.Functional object at 0x7f5edc2b19a0>, <keras.engine.functional.Functional object at 0x7f5ed47902e0>, <keras.engine.functional.Functional object at 0x7f5ed45cf2b0>, <keras.engine.functional.Functional object at 0x7f5ed46447c0>]
+[<keras.engine.functional.Functional object at 0x7f81febe46d0>, [], [], [], []]
+[<keras.engine.functional.Functional object at 0x7f81febe46d0>, <keras.engine.functional.Functional object at 0x7f81fc11dc70>, [], [], []]
+[<keras.engine.functional.Functional object at 0x7f81febe46d0>, <keras.engine.functional.Functional object at 0x7f81fc11dc70>, <keras.engine.functional.Functional object at 0x7f81f0606ac0>, [], []]
+[<keras.engine.functional.Functional object at 0x7f81febe46d0>, <keras.engine.functional.Functional object at 0x7f81fc11dc70>, <keras.engine.functional.Functional object at 0x7f81f0606ac0>, <keras.engine.functional.Functional object at 0x7f81f05b8c40>, []]
+[<keras.engine.functional.Functional object at 0x7f81febe46d0>, <keras.engine.functional.Functional object at 0x7f81fc11dc70>, <keras.engine.functional.Functional object at 0x7f81f0606ac0>, <keras.engine.functional.Functional object at 0x7f81f05b8c40>, <keras.engine.functional.Functional object at 0x7f81f03f1f10>]
 gtex
 
 Acceptor:
-0.5:0.9958	1:0.7713	:0.8972	4:0.9609	PR-AUC:0.8588	0.5:0.7348	1:0.0640	2:0.0133	4:0.0037	SS:22349
+0.5:0.9961	1:0.7710	:0.8954	4:0.9596	PR-AUC:0.8579	0.5:0.7471	1:0.0650	2:0.0129	4:0.0035	SS:22349
 
 Donor:
-0.5:0.9953	1:0.7764	:0.9042	4:0.9636	PR-AUC:0.8642	0.5:0.7291	1:0.0625	2:0.0121	4:0.0033	SS:22004
---- 998.6933844089508 seconds ---
+0.5:0.9949	1:0.7769	:0.9047	4:0.9623	PR-AUC:0.8634	0.5:0.7558	1:0.0694	2:0.0127	4:0.0033	SS:22004
+--- 980.9901442527771 seconds ---
 --------------------------------------------------------------
 1 Physical GPUs, 1 Logical GPUs
-[<keras.engine.functional.Functional object at 0x7f111d5801f0>, [], [], [], []]
-[<keras.engine.functional.Functional object at 0x7f111d5801f0>, <keras.engine.functional.Functional object at 0x7f11182404f0>, [], [], []]
-[<keras.engine.functional.Functional object at 0x7f111d5801f0>, <keras.engine.functional.Functional object at 0x7f11182404f0>, <keras.engine.functional.Functional object at 0x7f110018f160>, [], []]
-[<keras.engine.functional.Functional object at 0x7f111d5801f0>, <keras.engine.functional.Functional object at 0x7f11182404f0>, <keras.engine.functional.Functional object at 0x7f110018f160>, <keras.engine.functional.Functional object at 0x7f10b84350d0>, []]
-[<keras.engine.functional.Functional object at 0x7f111d5801f0>, <keras.engine.functional.Functional object at 0x7f11182404f0>, <keras.engine.functional.Functional object at 0x7f110018f160>, <keras.engine.functional.Functional object at 0x7f10b84350d0>, <keras.engine.functional.Functional object at 0x7f10b83e7f40>]
+[<keras.engine.functional.Functional object at 0x7fc210412ac0>, [], [], [], []]
+[<keras.engine.functional.Functional object at 0x7fc210412ac0>, <keras.engine.functional.Functional object at 0x7fc21031ba30>, [], [], []]
+[<keras.engine.functional.Functional object at 0x7fc210412ac0>, <keras.engine.functional.Functional object at 0x7fc21031ba30>, <keras.engine.functional.Functional object at 0x7fc18c7ce370>, [], []]
+[<keras.engine.functional.Functional object at 0x7fc210412ac0>, <keras.engine.functional.Functional object at 0x7fc21031ba30>, <keras.engine.functional.Functional object at 0x7fc18c7ce370>, <keras.engine.functional.Functional object at 0x7fc1b804e490>, []]
+[<keras.engine.functional.Functional object at 0x7fc210412ac0>, <keras.engine.functional.Functional object at 0x7fc21031ba30>, <keras.engine.functional.Functional object at 0x7fc18c7ce370>, <keras.engine.functional.Functional object at 0x7fc1b804e490>, <keras.engine.functional.Functional object at 0x7fc18c7dd460>]
 canonical
 
 Acceptor:
-0.5:0.9922	1:0.9262	:0.9823	4:0.9885	PR-AUC:0.9643	0.5:0.8974	1:0.3573	2:0.0342	4:0.0083	SS:14289
+0.5:0.9920	1:0.9265	:0.9829	4:0.9888	PR-AUC:0.9646	0.5:0.9058	1:0.3733	2:0.0342	4:0.0079	SS:14289
 
 Donor:
-0.5:0.9926	1:0.9289	:0.9855	4:0.9911	PR-AUC:0.9678	0.5:0.8933	1:0.3467	2:0.0312	4:0.0072	SS:14289
---- 996.5955216884613 seconds ---
+0.5:0.9926	1:0.9285	:0.9857	4:0.9912	PR-AUC:0.9674	0.5:0.9086	1:0.3829	2:0.0341	4:0.0074	SS:14289
+--- 982.6579055786133 seconds ---
 --------------------------------------------------------------
