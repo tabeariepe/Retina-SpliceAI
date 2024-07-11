@@ -61,7 +61,7 @@ print('Number of retina-specific exons: ', len(retina_exons))
 control_exons = pd.read_csv('../ref_data/matching_exons.bed', sep = '\t')
 control_exons = control_exons.values.tolist()
 
-models = ['SpliceAI_dropout_freeze_retina_all','SpliceAI_standard_gtex']
+models = ['SpliceAI_dropout_freeze_retina_all','SpliceAI_dropout0.3_gtex_all']
 
 retina_prediction = get_predictions(retina_exons, models)
 retina_prediction.to_csv('../predictions/retina_exons_predictions.tsv', sep = '\t', index = False)
