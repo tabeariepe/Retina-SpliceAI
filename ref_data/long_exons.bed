@@ -1,4 +1,4 @@
-chr start   end strand
+chr	start	end	strand
 chr14	88833693	88833722	1.0
 chr13	94310538	94310567	1.0
 chr2	154443043	154443072	1.0

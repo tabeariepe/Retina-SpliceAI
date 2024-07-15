@@ -1,4 +1,0 @@
-Number of novel acceptors:  11269
-Number of novel donors:  11805
-['chr', 'start', 'SpliceAI_dropout_freeze_retina_all', 'SpliceAI_dropout0.3_gtex_all']
-['chr', 'start', 'SpliceAI_dropout_freeze_retina_all', 'SpliceAI_dropout0.3_gtex_all']

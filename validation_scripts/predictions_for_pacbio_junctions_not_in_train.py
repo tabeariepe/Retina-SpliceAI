@@ -47,8 +47,8 @@ def get_score_position(chrom, pos, ann, dist_var):
 models = ['SpliceAI_dropout_freeze_retina_all', 'SpliceAI_dropout0.3_gtex_all', 'SpliceAI_standard_gtex']
 
 # Load the novel acceptor and donor sites
-acceptors = pd.read_csv('../ref_data/pacbio_novel_acceptors.tsv', sep = '\t', header = None)
-donors = pd.read_csv('../ref_data/pacbio_novel_donors.tsv', sep = '\t', header = None)
+acceptors = pd.read_csv('../ref_data/pacbio_sas_not_in_train.tsv', sep = '\t', header = None)
+donors = pd.read_csv('../ref_data/pacbio_sds_not_in_train.tsv', sep = '\t', header = None)
 acceptors = acceptors.values.tolist()
 donors = donors.values.tolist()
 print('Number of novel acceptors: ', len(acceptors))
@@ -82,7 +82,7 @@ for i in acceptors:
 columns = ['chr', 'start'] + [model for model in models]
 print(columns)
 result_acceptors_df = pd.DataFrame(result_acceptors, columns=columns)
-result_acceptors_df.to_csv('../predictions/pacbio_acceptors_predictions.tsv', sep = '\t', index = False)
+result_acceptors_df.to_csv('../predictions/pacbio_acceptors_not_in_train_predictions.tsv', sep = '\t', index = False)
 
 result_donors = []
 
@@ -97,4 +97,4 @@ for i in donors:
     result_donors.append([chr, position] + [np.around(scores[i], decimals=2) for i in range(len(scores))])
 
 result_donors_df = pd.DataFrame(result_donors, columns=columns)
-result_donors_df.to_csv('../predictions/pacbio_donors_predictions.tsv', sep = '\t', index = False)
+result_donors_df.to_csv('../predictions/pacbio_donors_not_in_train_predictions.tsv', sep = '\t', index = False)

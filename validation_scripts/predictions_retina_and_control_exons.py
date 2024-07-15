@@ -1,5 +1,5 @@
+# %%
 # Imports 
-
 from pkg_resources import resource_filename
 import pandas as pd
 import numpy as np
@@ -42,26 +42,28 @@ def get_predictions(exon_list, models):
         else:
             print('Strand info is missing')
 
-        result.append([chr, start, end,  np.around(scores[0], decimals=2), np.around(scores[2], decimals=2),
-                    np.around(scores[1], decimals=2), np.around(scores[3], decimals=2)])
+        result.append([chr, start, end, strand, np.around(scores[0], decimals=2), np.around(scores[2], decimals=2), np.around(scores[4], decimals=2),
+                    np.around(scores[1], decimals=2), np.around(scores[3], decimals=2),  np.around(scores[5], decimals=2)])
         
 
-    result_df = pd.DataFrame(result, columns=['chr', 'start', 'end', 'retina_acceptor','gtex_acceptor', 'retina_donor', 'gtex_donor'])
+    result_df = pd.DataFrame(result, columns=['chr', 'start', 'end', 'strand', 'retina_acceptor','gtex_acceptor', 'gtex2_acceptor', 'retina_donor', 'gtex_donor', 'gtex2_donor'])
     return result_df
-
+# %%
 # load the exons
 short_exons = pd.read_csv('../ref_data/short_exons.bed', sep = '\t')
 short_exons = short_exons.values.tolist()
 long_exons = pd.read_csv('../ref_data/long_exons.bed', sep = '\t')
 long_exons = long_exons.values.tolist()
 musashi_exons = pd.read_csv('../ref_data/Musashi_hg38.bed', sep = '\t')
+# %%
 musash_exons = musashi_exons.values.tolist()
 retina_exons = short_exons + long_exons + musash_exons
 print('Number of retina-specific exons: ', len(retina_exons))
+# %%
 control_exons = pd.read_csv('../ref_data/matching_exons.bed', sep = '\t')
 control_exons = control_exons.values.tolist()
 
-models = ['SpliceAI_dropout_freeze_retina_all','SpliceAI_dropout0.3_gtex_all']
+models = ['SpliceAI_dropout_freeze_retina_all','SpliceAI_dropout0.3_gtex_all', 'SpliceAI_standard_gtex']
 
 retina_prediction = get_predictions(retina_exons, models)
 retina_prediction.to_csv('../predictions/retina_exons_predictions.tsv', sep = '\t', index = False)

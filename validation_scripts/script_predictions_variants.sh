@@ -16,5 +16,6 @@ pip3 install pyfaidx
 
 cd /home/validation_scripts/
 
-python3 predictions_for_vcf.py ../variants/retina_specific_hg38.vcf ../predictions/retina_specific_variants.tsv > retina_specific.txt
-python3 predictions_for_vcf.py ../variants/unsolved_retnet.vcf ../predictions/unsolved_retnet.tsv >> retina_specific.txt
+#python3 predictions_for_vcf.py ../variants/retina_specific_hg38.vcf ../predictions/retina_specific_variants.tsv > retina_specific.txt
+#python3 predictions_for_vcf.py ../variants/unsolved_retnet.vcf ../predictions/unsolved_retnet.tsv >> retina_specific.txt
+python3 predictions_for_vcf.py ../variants/merged_filtered_5.vcf.gz ../predictions/unsolved_all_5.tsv > all_variants.txt
