@@ -64,8 +64,8 @@ cat *.SJ.out.tab | awk '($5 > 0 && $7 > 2 && $9 > 4 )' | sort > SJ.filtered2.tab
 
 Run `prepare_training_data.py` to convert the STAR splice junctions into SpliceAI training data format. 
 
-```
 ### Create the SpliceAI training data
+```
 python create_datafile.py train all
 python create_datafile.py test 0
 # This caused an error for gene U3 so I excluded it from the analysis
