@@ -16,7 +16,6 @@ args = parser.parse_args()
 vcf_file = args.input
 output_file = args.output
 
-
 reference = '../annotations/hg38.fa'
 annotation = '../annotations/combined.txt'
 
@@ -24,13 +23,11 @@ vcf = pysam.VariantFile(vcf_file)
 
 retina = Annotator(reference, annotation, 'SpliceAI_dropout_freeze_retina_all')
 gtex = Annotator(reference, annotation, 'SpliceAI_dropout0.3_gtex_all')
-gtex_standard = Annotator(reference, annotation, 'SpliceAI_standard_gtex')
 result = []
 for record in vcf:
     retina_score = get_delta_scores(record, retina, 10000, 0)
     gtex_score = get_delta_scores(record, gtex, 10000, 0)
-    gtex_standard_score = get_delta_scores(record, gtex_standard, 10000, 0)
-    result.append([record.pos, retina_score, gtex_score, gtex_standard_score])
+    result.append([record.pos, retina_score, gtex_score])
 
 with open (output_file, 'w') as file:
     for i in result:
