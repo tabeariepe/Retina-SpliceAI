@@ -18,8 +18,6 @@ java -jar ena-file-downloader.jar \
 ENSEMBL release 110 (downloaded on 08/01/2024)
 
 ### TrimGalore (v.0.6.10)
-Trimming failed for two files (SRR7460904 and SRR7461157), so those are excluded
-
 ```
 ../tools/TrimGalore-0.6.10/trim_galore --fastqc --paired --illumina --cores 20 \
 -o training_data/pinelli/trimmed \
