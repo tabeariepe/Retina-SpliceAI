@@ -13,5 +13,5 @@
 
 cd /home/scripts/
 
-i=1
-python3 train_model.py $i retina dropout train --dropoutrate 0.2 > ../output_train_new/SpliceAI_dropout0.2_new_retina${i}.txt;
+for i in {1..5};
+  python3 train_model.py $i retina dropout train --dropoutrate 0.2 > ../output_train_new/SpliceAI_dropout0.2_new_retina${i}.txt;
