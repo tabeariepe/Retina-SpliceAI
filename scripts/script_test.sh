@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # GTEx
 python3 test_model.py SpliceAI_standard_gtex retina > ../output_test/SpliceAI_standard_gtex.txt
