@@ -1,5 +1,5 @@
 # Retina-SpliceAI
-This repository contains the scripts used for the paper '_Deep learning-based prediction of tissue-specific splice sites in the human neural retina' by Riepe et al. (2024).
+This repository contains the scripts used for the paper '_Deep learning-based prediction of tissue-specific splice sites in the human neural retina_' by Riepe et al. (2024).
 
 ## Data
 In [Training data](training_data) we describe how we obtained the retina dataset included in [datasets](datasets). 
